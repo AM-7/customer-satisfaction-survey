@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Feedback = require('../models/Feedback');
+const { calculateCSI } = require('../controllers/feedbackController');
+
 
 // Route to submit feedback
 router.post('/submit', async (req, res) => {
@@ -25,5 +27,7 @@ router.get('/all-feedbacks', async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 });
+
+router.get('/csi', calculateCSI);
 
 module.exports = router;
